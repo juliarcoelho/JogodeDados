@@ -1,63 +1,9 @@
+//variaveis
 let placar1 = '';
 let placar2 = '';
 let placarGeral1 = 0;
 let placarGeral2 = 0;
 let contagem = 0;
-
-//mostra placar no final do jogo
-function placarFinal() {
-  let textoPlacar = document.getElementById("placar");
-
-  if (placarGeral1 > placarGeral2) {
-    textoPlacar.innerHTML = 'FIM DE JOGO: Jogador 1 venceu o jogo!';
-  } else if (placarGeral1 == placarGeral2) {
-    textoPlacar.innerHTML = 'FIM DE JOGO:Os jogadores empataram!';
-  } else {
-    textoPlacar.innerHTML = 'FIM DE JOGO:Jogador 2 venceu a rodada!';
-  }
-}
-
-//mostra placar no fim de cada rodada
-function placarRodada() {
-  let textoPlacar = document.getElementById("placar");
-
-  if (placar1 > placar2) {
-    contagem++ //add 1 na contagem de rodadas
-    placarGeral1++ //add 1 nos pontos do 1 jogador
-    textoPlacar.innerHTML = 'Jogador 1 venceu a rodada!';
-
-    //checa se já chegou na 10 rodada
-    if (contagem == 10) {
-      document.getElementById("botao2").disabled = true;
-      document.getElementById("botao1").disabled = true;
-      placarFinal(); //chama função do placar final se já for a 10 rodada
-    }
-  } else if (placar1 == placar2) {
-    //ninguem pontua pq foi empate
-    contagem++ //add 1 na contagem de rodadas
-    textoPlacar.innerHTML = 'Os jogadores empataram nessa rodada!';
-
-    //checa se já chegou na 10 rodada
-    if (contagem == 10) {
-      document.getElementById("botao2").disabled = true;
-      document.getElementById("botao1").disabled = true;
-      placarFinal(); //chama função do placar final se já for a 10 rodada
-    }
-  } else {
-    contagem++ //add 1 na contagem de rodadas
-    placarGeral2++ //add 1 nos pontos do 2 jogador
-    textoPlacar.innerHTML = 'Jogador 2 venceu a rodada!';
-
-    //checa se já chegou na 10 rodada
-    if (contagem == 10) {
-      document.getElementById("botao2").disabled = true;
-      document.getElementById("botao1").disabled = true;
-      document.getElementById("botao2").style.backgroundColor = 'grey';
-      document.getElementById("botao1").style.backgroundColor = 'grey';
-      placarFinal(); //chama função do placar final se já for a 10 rodada
-    }
-  }
-}
 
 function rodarDado() {
   let textoPlacar = document.getElementById("placar");
@@ -138,19 +84,26 @@ function rodarDado2() {
   document.getElementById("botao2").disabled = true;
   //coloca a cor do botao inativo
   document.getElementById("botao2").style.backgroundColor = 'grey';
-
-  //ativa o botão1 que estava desativado enquanto era a vez o jogador2
-  document.getElementById("botao1").disabled = false;
-  //coloca a cor do botao ativo
-  document.getElementById("botao1").style.backgroundColor = '#3b3b3b';
-  //muda a cor quando o mouse passa por cima pra dar a ideia de botão clicavel 
-  document.getElementById("botao1").addEventListener("mouseover", function () {
-    document.getElementById("botao1").style.backgroundColor = '#000000';
-  });
-  //volta a cor inicial quando o mouse sai de cima do botão
-  document.getElementById("botao1").addEventListener("mouseout", function () {
+  
+  if(contagem == 9){
+    //coloca a cor do botao inativo pq acabou o jogo
+    document.getElementById("botao1").style.backgroundColor = 'grey';
+    
+  }else{
+    //ativa o botão1 que estava desativado enquanto era a vez o jogador2
+    document.getElementById("botao1").disabled = false;
+    //coloca a cor do botao ativo
     document.getElementById("botao1").style.backgroundColor = '#3b3b3b';
-  });
+    //muda a cor quando o mouse passa por cima pra dar a ideia de botão clicavel 
+    document.getElementById("botao1").addEventListener("mouseover", function () {
+      document.getElementById("botao1").style.backgroundColor = '#000000';
+    });
+    //volta a cor inicial quando o mouse sai de cima do botão
+    document.getElementById("botao1").addEventListener("mouseout", function () {
+      document.getElementById("botao1").style.backgroundColor = '#3b3b3b';
+    });
+  }
+  
 
   //mostra a imagem de do dado acordo com o número da variavel dado
   if (dado == 1) {
@@ -181,6 +134,61 @@ function rodarDado2() {
   placarRodada(); //chama função que mostra quem venceu aquela rodada
 }
 
+//mostra placar no fim de cada rodada
+function placarRodada() {
+  let textoPlacar = document.getElementById("placar");
+
+  if (placar1 > placar2) {
+    contagem++ //add 1 na contagem de rodadas
+    placarGeral1++ //add 1 nos pontos do 1 jogador
+    textoPlacar.innerHTML = `Jogador 1 venceu a rodada! <br> ${placarGeral1} X ${placarGeral2}`;
+
+    //checa se já chegou na 10 rodada
+    if (contagem == 10) {
+      document.getElementById("botao2").disabled = true;
+      document.getElementById("botao1").disabled = true;
+      placarFinal(); //chama função do placar final se já for a 10 rodada
+    }
+  } else if (placar1 == placar2) {
+    //ninguem pontua pq foi empate
+    contagem++ //add 1 na contagem de rodadas
+    textoPlacar.innerHTML = `Os jogadores empataram nessa rodada! <br> ${placarGeral1} X ${placarGeral2}`;
+
+    //checa se já chegou na 10 rodada
+    if (contagem == 10) {
+      document.getElementById("botao2").disabled = true;
+      document.getElementById("botao1").disabled = true;
+      placarFinal(); //chama função do placar final se já for a 10 rodada
+    }
+  } else {
+    contagem++ //add 1 na contagem de rodadas
+    placarGeral2++ //add 1 nos pontos do 2 jogador
+    textoPlacar.innerHTML = `Jogador 2 venceu a rodada! <br> ${placarGeral1} X ${placarGeral2}`;
+
+    //checa se já chegou na 10 rodada
+    if (contagem == 10) {
+      document.getElementById("botao2").disabled = true;
+      document.getElementById("botao1").disabled = true;
+      
+      placarFinal(); //chama função do placar final se já for a 10 rodada
+    }
+  }
+
+}
+
+//mostra placar no final do jogo
+function placarFinal() {
+  let textoPlacar = document.getElementById("placar");
+
+  if (placarGeral1 > placarGeral2) {
+    textoPlacar.innerHTML = `FIM DE JOGO: Jogador 1 venceu o jogo! <br> ${placarGeral1} X ${placarGeral2}`;
+  } else if (placarGeral1 == placarGeral2) {
+    textoPlacar.innerHTML = `FIM DE JOGO: Os jogadores empataram! <br> ${placarGeral1} X ${placarGeral2}`;
+  } else {
+    textoPlacar.innerHTML = `FIM DE JOGO: Jogador 2 venceu o jogo! <br> ${placarGeral1} X ${placarGeral2}`;
+  }
+}
+
 function reiniciarJogo() {
   let texto = document.getElementById("texto");
   let texto1 = document.getElementById("texto1");
@@ -209,12 +217,15 @@ function reiniciarJogo() {
   //coloca a cor do botao inativo
   document.getElementById("botaoReiniciar").style.backgroundColor = 'grey';
 
-  //tira a imagem dos dados e do resultado da rodada ou da partida
+  //tira a imagem dos dados e do resultado da rodada ou da partida e zera a contagem de rodadas como tbm zera o placar e o placar geral
   textoPlacar.innerHTML = '';
   texto1.innerHTML = '';
   texto.innerHTML = '';
-
-
+  contagem = 0;
+  placar1 = '';
+  placar2 = '';
+  placarGeral1 = 0;
+  placarGeral2 = 0;
 }
 
 
