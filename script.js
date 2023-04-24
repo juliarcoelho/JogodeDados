@@ -85,6 +85,7 @@ function rodarDado2() {
   //coloca a cor do botao inativo
   document.getElementById("botao2").style.backgroundColor = 'grey';
   
+  //contagem até 9 pq a variavel contagem é incrementada depois (na função placarRodada)
   if(contagem == 9){
     //coloca a cor do botao inativo pq acabou o jogo
     document.getElementById("botao1").style.backgroundColor = 'grey';
