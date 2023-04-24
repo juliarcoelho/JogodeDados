@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <title>Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Vamos jogar?</h1>
+  </header>
+  <main>
+    <!--p onde vai aparecer o dado-->
+    <p id="texto"></p>
+    <p id="texto1"></p>
+
+    <br>
+
+    <!--botão que chama a função js-->
+    <button onclick="rodarDado()" id="botao1">Jogador 1</button>
+    <button onclick="rodarDado2()" id="botao2" disabled>Jogador 2</button>
+    <button onclick="reiniciarJogo()" id="botaoReiniciar" disabled>Reiniciar jogo</button>
+
+    <br>
+
+    <p id="placar"></p>
+  </main>
+</body>
+
+</html>
